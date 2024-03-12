@@ -1,0 +1,120 @@
+$primary-color: #539c9c;
+$secondary-color: #6c757d;
+$success-color: #28a745; //已發佈顏色
+$danger-color: #dc3545; // 未發佈/刪除顏色
+
+//表格樣式
+.table {
+  width: 75%;
+  border-collapse: collapse; // 刪除表格間空隙
+
+  th,
+  td {
+    padding: 4px;
+    text-align: center;
+  }
+
+  th {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  tr {
+    border: 1px solid #ADADAD;
+  }
+}
+
+.button {
+  padding: 8px 16px; // 按钮内边距
+  border: none; // 删除边框
+  border-radius: 4px; // 边角圆滑
+  cursor: pointer; // 鼠标悬停时显示指针
+  margin-right: 4px; // 按钮间隔
+
+  &.edit {
+    background-color: $primary-color; // 编辑按钮背景色
+    color: white; // 文字颜色
+
+    &:hover {
+      background-color: lighten($primary-color, 10%)
+    }
+  }
+
+  &.delete {
+    background-color: $danger-color; // 删除按钮背景色
+    color: white;
+
+    &:hover {
+      background-color: lighten($danger-color, 10%)
+    }
+  }
+
+  &.published {
+    background-color: $success-color; // 已发布按钮背景色
+    color: white;
+  }
+
+  &.unpublished {
+    background-color: $danger-color; // 未发布按钮背景色
+    color: white;
+  }
+
+  &.addArticle {
+    background-color: #6c757d;
+    color: white;
+  }
+}
+
+.addArticleButton {
+  width: 100px;
+  //padding: auto; // 增加按钮的内边距
+  font-size: 18px;
+  cursor: pointer; // 鼠标悬停时显示指针样式
+  border: none; // 去除边框
+  border-radius: 5px; // 轻微的边角圆滑
+  background-color: #007bff; // 按钮背景颜色
+  color: white; // 按钮文字颜色
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // 给按钮添加阴影效果
+  transition: background-color 0.3s ease; // 添加背景颜色变化的过渡效果
+
+  &:hover {
+    background-color: darken(#007bff, 10%); // 鼠标悬停时加深背景颜色
+  }
+}
+
+.searchAndFilterContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+
+  .searchInput,
+  .filterSelect {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid $secondary-color;
+    border-radius: 4px;
+    outline: none;
+
+    .searchInput,
+    .filterSelect {
+      padding: 10px 15px; // 内边距
+      font-size: 16px; // 字体大小
+      border: 1px solid $secondary-color; // 边框
+      border-radius: 4px; // 边框圆角
+      outline: none; // 去除焦点轮廓线
+
+      &:focus {
+        border-color: $primary-color; // 聚焦时边框颜色
+      }
+    }
+
+    .searchInput {
+      flex-grow: 1; // 搜索框占据多余空间
+    }
+
+    .filterSelect {
+      min-width: 200px; // 筛选下拉框的最小宽度
+    }
+  }
+}

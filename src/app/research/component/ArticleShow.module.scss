@@ -1,0 +1,61 @@
+.articleShow {
+  display: flex;
+  flex-wrap: wrap;
+  gap:10px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.articleBox {
+  width: calc(20% - 20px); // 减去margin的空间
+  justify-content: flex-start;
+  margin-bottom: 30px; // 给底部留出空间
+  border: 1px solid #ddd; // 可选，如果你想要边框
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // 给盒子添加阴影
+
+  &:nth-child(-n+5) {
+    margin-top: 30px; // 第一行的盒子顶部留出空间
+  }
+
+  .articleImage {
+    width: 95%; // 让图片填满盒子宽度
+    margin: auto;
+    height: auto; // 图片高度自适应
+  }
+
+  .articleTitle {
+    text-align: center; // 标题居中
+    font-size: 100%; // 字体大小
+    margin: auto;
+  }
+}
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  padding: 0;
+
+  .pageItem {
+      margin: 0 5px;
+  }
+
+  .pageLink {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      color: #333;
+      text-decoration: none;
+
+      &:hover {
+          background-color: #f2f2f2;
+      }
+  }
+
+  .active {
+      .pageLink {
+          background-color: #007bff;
+          color: white;
+          border-color: #007bff;
+      }
+  }
+}

@@ -1,0 +1,20 @@
+.button {
+    padding: 8px 16px; // 按钮内边距
+    border: none; // 删除边框
+    border-radius: 4px; // 边角圆滑
+    cursor: pointer; // 鼠标悬停时显示指针
+    margin-right: 4px; // 按钮间隔
+  
+    &.addArticle {
+      background-color: #6c757d;
+      color: white;
+    }
+  }
+
+.adminHeader {
+    width: 75%;
+    text-align: center; // 将文字居中
+    font-size: 36px; // 增加字体大小
+    font-weight: bold; // 字体加粗
+    margin-bottom: 20px; // 增加与下方内容的距离
+  }
