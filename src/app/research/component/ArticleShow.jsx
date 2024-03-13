@@ -3,6 +3,7 @@ import styles from "./ArticleShow.module.scss"
 import React, { useState, useEffect } from 'react';
 import ReactPaginate from "react-paginate";
 import { fetchData } from "@/api/fetchData";
+
 export default function ArticleShow() {
     //所有研究方向文章
     const [articles, setArticles] = useState([]);
