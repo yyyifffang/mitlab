@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ArticleRow from './ArticleRow';
 import styles from './ArticleListAndRow.module.scss'
-import { fetchAllArticles } from '@/api/sudo/ManagementArticles';
+import { fetchAllArticles ,deleteArticlesByUuid} from '@/api/sudo/ManagementArticles';
 
 export default function ArticleList() {
     //取得文章列表
@@ -15,20 +15,22 @@ export default function ArticleList() {
     const [sortDirection, setSortDirection] = useState('desc');
 
     //刪除文章功能
-    const DeleteData = (uuid) => {
-        //使用filter創建一個不包含要刪除項的新array
-        const updateArticles = articles.filter(article => article.uuid != uuid);
-        //使用setarticles
-        setArticles(updateArticles);
+    const DeleteArticle = async(uuid)  => {
+        const response = await deleteArticlesByUuid(uuid);
+        if(!response.error){
+            const updateArticles = articles.filter(article => article.uuid !== uuid);
+            setArticles(updateArticles);
+        };
     };
 
     useEffect(() => {
-        const getData = async () => {
-            const data = await fetchAllArticles();
-            //獲取最新articles狀態
-            setArticles(data);
+        const getAllArticles = async () => {
+            const response = await fetchAllArticles();
+            if(response.data){
+                setArticles(response.data);
+            }
         };
-        getData();
+        getAllArticles();
     }, []); //[]表示effect只在組件加載時運行一次
 
     //標籤篩選功能
@@ -49,8 +51,8 @@ export default function ArticleList() {
     //篩選結果
     const filteredArticles = articles
         .filter(article => {
-        //檢查標籤
-        const tagMatch = filterTag ? article.tags.includes(filterTag) : true;
+        //檢查標籤，因為tags是用逗號分隔的字串，所以要先將其分割成數組再匹配
+        const tagMatch = filterTag ? article.tags.split(",").includes(filterTag) : true;
         //檢查標題
         const titleMatch = article.title.toLowerCase().includes(searchTitle.toLowerCase());
         return tagMatch & titleMatch
@@ -105,7 +107,7 @@ export default function ArticleList() {
                 </thead>
                 <tbody>
                     {filteredArticles.map(article => (
-                        <ArticleRow key={article.uuid} article={article} DeleteData={DeleteData} />
+                        <ArticleRow key={article.uuid} article={article} DeleteData={DeleteArticle} />
                     ))}
 
                 </tbody>

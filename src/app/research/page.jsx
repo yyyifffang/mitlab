@@ -1,4 +1,3 @@
-import Link from "next/link"
 import styles from "./page.module.scss"
 import * as React from "react";
 import ArticleShow from "./component/ArticleShow"

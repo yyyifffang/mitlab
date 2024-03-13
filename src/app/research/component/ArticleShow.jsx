@@ -2,26 +2,26 @@
 import styles from "./ArticleShow.module.scss"
 import React, { useState, useEffect } from 'react';
 import ReactPaginate from "react-paginate";
-import { fetchData } from "@/api/fetchData";
+//取得特定tag文章的api
+import { GetTagsArticles } from "@/api/GetArticles";
 
 export default function ArticleShow() {
     //所有研究方向文章
     const [articles, setArticles] = useState([]);
     //當前頁碼，ReactPaginate使用0當第一頁
     const [currentPage, setCurrentPage] = useState(0);
-    //搜尋文章標題
-    const [searchTitle, setSearchTitle] = useState("");
     //每頁顯示的文章數
     const articlesPerPage = 10;
 
     //取得文章
     useEffect(() => {
-        const getData = async () => {
-                const data = await fetchData();
-                const MatchedArticles = data.filter(articles => articles.is_published && articles.tags === "Life Records");
-                setArticles(MatchedArticles);
+        const getTagArticles = async () => {
+                const response = await GetTagsArticles("Life Records");
+                if(response.data){
+                    setArticles(response.data);
+                }
         };
-        getData();
+        getTagArticles();
     }, []);
 
     //計算總頁數
@@ -40,7 +40,7 @@ export default function ArticleShow() {
                 {currentArticles.map(article => (
                     <div key={article.uuid} className={styles.articleBox}>
                         <img
-                            src="https://fakeimg.pl/300/"
+                            src={article.cover_image_url|| "https://fakeimg.pl/300/" } //後面是放預設圖片
                             alt={article.title}
                             className={styles.articleImage}
                         />

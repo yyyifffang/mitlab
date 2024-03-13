@@ -1,5 +1,4 @@
 import axios from "axios";
-import { publicview } from "./urls";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -34,7 +33,7 @@ export async function GetArticles(uuid: string): Promise<ArticlesResponse> {
     try {
         const response = await axios({
             method: 'get',
-            url: `${publicview}/article/${uuid}`,
+            url: `/api/article/${uuid}`,
             baseURL: BASE_URL,
         });
         return response.data;
@@ -53,7 +52,7 @@ export async function GetTags(): Promise<TagsResponse> {
     try {
         const response = await axios({
             method: 'get',
-            url: `${publicview}/tags`,
+            url: `/api/tags`,
             baseURL: BASE_URL,
         });
         return response.data;
@@ -69,11 +68,11 @@ export async function GetTags(): Promise<TagsResponse> {
 }
 
 //取得特定tag之已發布文章
-export async function GetTagsArticles(tags_name: string): Promise<ArticlesResponse> {
+export async function GetTagsArticles(tag_name: string): Promise<ArticlesResponse> {
     try{
         const response = await axios({
             method: 'get',
-            url: `${publicview}/articles/${tags_name}`,
+            url: `/api/articles/${tag_name}`,
             baseURL: BASE_URL,
         });
         return response.data;
