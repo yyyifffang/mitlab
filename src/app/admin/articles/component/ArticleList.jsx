@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import ArticleRow from './ArticleRow';
 import styles from './ArticleListAndRow.module.scss'
+
 import managementArticles from '@/api/sudo/managementArticles';
 import fetchAllArticles from '@/api/sudo/fetchAllArticles';
+import getTags from '@/api/getTags';
 
 export default function ArticleList() {
     //取得文章列表
@@ -14,6 +16,8 @@ export default function ArticleList() {
     const [searchTitle, setSearchTitle] = useState("");
     //排序日期
     const [sortDirection, setSortDirection] = useState('desc');
+    //get後端tag
+    const [tags,setTags] = useState([]);
 
     //刪除文章功能
     const DeleteArticle = async(uuid)  => {
@@ -25,6 +29,7 @@ export default function ArticleList() {
     };
 
     useEffect(() => {
+        //取得所有文章
         const getAllArticles = async () => {
             const response = await fetchAllArticles.GET();
             if(response.data){
@@ -32,7 +37,16 @@ export default function ArticleList() {
             }
         };
         getAllArticles();
+        //獲取後端寫死的所有tags
+        const getAllTags = async() => {
+            const tagsResponse = await getTags.GET();
+            if(tagsResponse.tags){
+                setTags(tagsResponse.tags);
+            }
+        };
+        getAllTags();
     }, []); //[]表示effect只在組件加載時運行一次
+
 
     //標籤篩選功能
     //篩選器改變時更新狀態
@@ -83,9 +97,9 @@ export default function ArticleList() {
                     value={filterTag}
                 >
                     <option value="">所有文章</option>
-                    <option value="Life Records">Life Records</option>
-                    <option value="Research Area">Research Area</option>
-                    <option value="QA">QA</option>
+                    {tags.map((tag)=>(
+                        <option key={tag} value={tag}>{tag}</option>
+                    ))}
                 </select>
                 <button className={styles.addArticleButton}>新增文章</button>
             </div>

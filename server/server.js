@@ -12,7 +12,17 @@ const articles=[
     "title": "114碩士生招收名額",
     "content": "yaya，14個好了",
     "cover_image_url": "test",
-    "tags": "Life Records",
+    "tags": "Life-Records",
+    "is_published": true,
+    "creation_date": "2023-05-16",
+    "modification_date": "2023-08-21"
+  },
+  {
+    "uuid": "2",
+    "title": "研究方向測試",
+    "content": "yaya，14個好了",
+    "cover_image_url": "test",
+    "tags": "Research-Area",
     "is_published": true,
     "creation_date": "2023-05-16",
     "modification_date": "2023-08-21"

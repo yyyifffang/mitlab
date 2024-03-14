@@ -16,7 +16,7 @@ export default function ArticleShow() {
     //取得文章
     useEffect(() => {
         const getTagArticles = async () => {
-            const response = await getTagsArticles.GET("Life Records");
+            const response = await getTagsArticles.GET("Life-Records");
             if (response.data) {
                 setArticles(response.data);
             }
@@ -39,6 +39,7 @@ export default function ArticleShow() {
             <div className={styles.articleShow}>
                 {currentArticles.map(article => (
                     <div key={article.uuid} className={styles.articleBox}>
+                        <text>{article.modification_date}</text>
                         <img
                             src={article.cover_image_url || "https://fakeimg.pl/300/"} //後面是放預設圖片
                             alt={article.title}
