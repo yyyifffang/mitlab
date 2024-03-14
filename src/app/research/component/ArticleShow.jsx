@@ -3,7 +3,7 @@ import styles from "./ArticleShow.module.scss"
 import React, { useState, useEffect } from 'react';
 import ReactPaginate from "react-paginate";
 //取得特定tag文章的api
-import { GetTagsArticles } from "@/api/GetArticles";
+import getTagsArticles from "@/api/getTagsArticles";
 
 export default function ArticleShow() {
     //所有研究方向文章
@@ -16,10 +16,10 @@ export default function ArticleShow() {
     //取得文章
     useEffect(() => {
         const getTagArticles = async () => {
-                const response = await GetTagsArticles("Life Records");
-                if(response.data){
-                    setArticles(response.data);
-                }
+            const response = await getTagsArticles.get("Life Records");
+            if (response.data) {
+                setArticles(response.data);
+            }
         };
         getTagArticles();
     }, []);
@@ -30,7 +30,7 @@ export default function ArticleShow() {
     const currentArticles = articles.slice(currentPage * articlesPerPage, (currentPage + 1) * articlesPerPage);
 
     //頁碼切換
-    const handlePageClick =({selected}) => {
+    const handlePageClick = ({ selected }) => {
         setCurrentPage(selected);
     }
 
@@ -40,7 +40,7 @@ export default function ArticleShow() {
                 {currentArticles.map(article => (
                     <div key={article.uuid} className={styles.articleBox}>
                         <img
-                            src={article.cover_image_url|| "https://fakeimg.pl/300/" } //後面是放預設圖片
+                            src={article.cover_image_url || "https://fakeimg.pl/300/"} //後面是放預設圖片
                             alt={article.title}
                             className={styles.articleImage}
                         />

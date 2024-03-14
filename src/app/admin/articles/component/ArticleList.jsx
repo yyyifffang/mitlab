@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import ArticleRow from './ArticleRow';
 import styles from './ArticleListAndRow.module.scss'
-import { fetchAllArticles ,deleteArticlesByUuid} from '@/api/sudo/ManagementArticles';
+import managementArticles from '@/api/sudo/managementArticles';
+import fetchAllArticles from '@/api/sudo/fetchAllArticles';
 
 export default function ArticleList() {
     //取得文章列表
@@ -16,7 +17,7 @@ export default function ArticleList() {
 
     //刪除文章功能
     const DeleteArticle = async(uuid)  => {
-        const response = await deleteArticlesByUuid(uuid);
+        const response = await managementArticles.deleted(uuid);
         if(!response.error){
             const updateArticles = articles.filter(article => article.uuid !== uuid);
             setArticles(updateArticles);
@@ -25,7 +26,7 @@ export default function ArticleList() {
 
     useEffect(() => {
         const getAllArticles = async () => {
-            const response = await fetchAllArticles();
+            const response = await fetchAllArticles.get();
             if(response.data){
                 setArticles(response.data);
             }
