@@ -17,7 +17,7 @@ export default function ArticleList() {
 
     //刪除文章功能
     const DeleteArticle = async(uuid)  => {
-        const response = await managementArticles.deleted(uuid);
+        const response = await managementArticles.DELETE(uuid);
         if(!response.error){
             const updateArticles = articles.filter(article => article.uuid !== uuid);
             setArticles(updateArticles);
@@ -26,7 +26,7 @@ export default function ArticleList() {
 
     useEffect(() => {
         const getAllArticles = async () => {
-            const response = await fetchAllArticles.get();
+            const response = await fetchAllArticles.GET();
             if(response.data){
                 setArticles(response.data);
             }

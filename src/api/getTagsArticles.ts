@@ -24,7 +24,7 @@ interface ArticlesResponse {
 }
 
 //取得特定tag之已發布文章
-async function get(tag_name: string): Promise<ArticlesResponse> {
+async function GET(tag_name: string): Promise<ArticlesResponse> {
     try{
         const response = await axios({
             method: 'get',
@@ -45,5 +45,5 @@ async function get(tag_name: string): Promise<ArticlesResponse> {
 }
 
 export default{
-    get
+    GET
 }

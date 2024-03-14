@@ -33,7 +33,7 @@ interface DeleteResponse {
 }
 
 //使用uuid刪除特定文章
-async function deleted(uuid: string): Promise<DeleteResponse> {
+async function DELETE(uuid: string): Promise<DeleteResponse> {
     try {
         const response = await axios({
             method: 'delete',
@@ -53,5 +53,5 @@ async function deleted(uuid: string): Promise<DeleteResponse> {
 }
 
 export default {
-    deleted
+    DELETE
 }

@@ -25,7 +25,7 @@ interface ArticlesResponse {
 }
 
 //查詢所有文章
-async function get(): Promise<ArticlesResponse> {
+async function GET(): Promise<ArticlesResponse> {
     try {
         const response = await axios({
             method: 'get',
@@ -45,5 +45,5 @@ async function get(): Promise<ArticlesResponse> {
 }
 
 export default {
-    get
+    GET
 }

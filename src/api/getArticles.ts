@@ -24,7 +24,7 @@ interface ArticlesResponse {
 }
 
 //一般使用者獲得已發布文章
-async function get(uuid: string): Promise<ArticlesResponse> {
+async function GET(uuid: string): Promise<ArticlesResponse> {
     try {
         const response = await axios({
             method: 'get',
@@ -45,5 +45,5 @@ async function get(uuid: string): Promise<ArticlesResponse> {
 
 
 export default {
-    get
+    GET
 };

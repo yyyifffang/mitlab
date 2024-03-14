@@ -12,7 +12,7 @@ interface TagsResponse{
 }
 
 //取得所有tag
-async function get(): Promise<TagsResponse> {
+async function GET(): Promise<TagsResponse> {
     try {
         const response = await axios({
             method: 'get',
@@ -32,5 +32,5 @@ async function get(): Promise<TagsResponse> {
 }
 
 export default {
-    get
+    GET
 };
