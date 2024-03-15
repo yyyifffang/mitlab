@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const api_url = '/api/sudo/article'
+const apiURL = '/api/sudo/article'
 
 //獲取article的所有data
 interface Data {
@@ -37,7 +37,7 @@ async function DELETE(uuid: string): Promise<DeleteResponse> {
     try {
         const response = await axios({
             method: 'delete',
-            url: `${api_url}/${uuid}`,
+            url: `${apiURL}/${uuid}`,
             baseURL: BASE_URL,
         });
         return response.data;

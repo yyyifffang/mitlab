@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-const api_url = '/api/tags';
+const apiURL = '/api/tags';
 
 //取得所有tags
 interface TagsResponse{
@@ -16,7 +16,7 @@ async function GET(): Promise<TagsResponse> {
     try {
         const response = await axios({
             method: 'get',
-            url: api_url,
+            url: apiURL,
             baseURL: BASE_URL,
         });
         return response.data;

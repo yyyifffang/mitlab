@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const api_url = '/api/articles'
+const apiURL = '/api/articles'
 
 //獲取article的所有data
 interface Data {
@@ -28,7 +28,7 @@ async function GET(tag_name: string): Promise<ArticlesResponse> {
     try{
         const response = await axios({
             method: 'get',
-            url: `${api_url}/${tag_name}`,
+            url: `${apiURL}/${tag_name}`,
             baseURL: BASE_URL,
         });
         return response.data;

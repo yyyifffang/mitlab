@@ -82,17 +82,18 @@ export default function ArticleList() {
     //渲染文章列表
     return (
         <>
-            <div className={`${styles.searchAndFilterContainer} ${styles.searchInput}`}>
-                <input
-                    type='text'
-                    className={styles.searchInput}
-                    placeholder='搜尋文章標題...'
-                    value={searchTitle}
-                    onChange={handleSearchTitle}
-                />
-                
+            <div className={styles.searchAndFilterContainer}>
+                <div style={{display :'flex',flexGrow:1,gap:'8px'}}>
+                    <input
+                        type='text'
+                        className={styles.searchInput}
+                        placeholder='搜尋文章標題...'
+                        value={searchTitle}
+                        onChange={handleSearchTitle}
+                    />
+                </div>
                 <select 
-                    className={`${styles.searchAndFilterContainer} ${styles.filterSelect}`}
+                    className={styles.filterSelect}
                     onChange={handleFilterChange} 
                     value={filterTag}
                 >
@@ -101,7 +102,9 @@ export default function ArticleList() {
                         <option key={tag} value={tag}>{tag}</option>
                     ))}
                 </select>
-                <button className={styles.addArticleButton}>新增文章</button>
+                <div>
+                    <button className={styles.addArticleButton}>新增文章</button>
+                </div>
             </div>
             <table className={styles.table}>
                 <thead>

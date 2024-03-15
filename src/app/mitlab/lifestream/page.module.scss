@@ -1,0 +1,11 @@
+.research {
+  color: rgba(46, 81, 92, 0.8);
+  font: 500 36px Inika, sans-serif;
+
+  @media (max-width: 991px) {
+    .div {
+      max-width: 100%;
+      font-size: 36px;
+    }
+  }
+}

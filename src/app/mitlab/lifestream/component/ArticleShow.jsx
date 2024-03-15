@@ -16,7 +16,7 @@ export default function ArticleShow() {
     //取得文章
     useEffect(() => {
         const getTagArticles = async () => {
-            const response = await getTagsArticles.GET("Research Area");
+            const response = await getTagsArticles.GET("Life Records");
             if (response.data) {
                 setArticles(response.data);
             }
